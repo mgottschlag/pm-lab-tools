@@ -12,7 +12,7 @@ if [ "$1" = "-n" ]; then
     NI_LDFLAGS=""
     shift
 else
-    NI_CFLAGS="-DWITH_NI -DSAMPLING_RATE=NI_SAMPLING_RATE"
+    NI_CFLAGS="-DWITH_NI -DSAMPLING_RATE=NI_SAMPLING_RATE -I/usr/local/natinst/nidaqmxbase/include"
     NI_LDFLAGS="-lnidaqmxbase"
 fi
 
@@ -65,7 +65,7 @@ function install_protobuf() {
   cd .deps
   if [ ! -d protobuf-src ]; then
       echo "- Fetching protobuf"
-      curl -o protobuf.tar.bz2 'http://protobuf.googlecode.com/files/protobuf-2.4.1.tar.bz2'
+      wget -O protobuf.tar.bz2 'https://github.com/google/protobuf/releases/download/v2.4.1/protobuf-2.4.1.tar.bz2'
       echo "- Unpacking protobuf"
       tar xjf protobuf.tar.bz2
       mv protobuf-2.4.1 protobuf-src
@@ -73,9 +73,9 @@ function install_protobuf() {
 
   if [ ! -d protobuf-c-src ]; then
       echo "- Fetching protobuf-c"
-      curl -o protobuf-c.tar.bz2 'http://protobuf-c.googlecode.com/files/protobuf-c-0.15.tar.gz'
+      wget -O protobuf-c.tar.gz 'https://github.com/PetteriAimonen/nanopb-benchmark/raw/master/test-protobuf-c/protobuf-c-0.15.tar.gz'
       echo "- Unpacking protobuf-c"
-      tar xzf protobuf-c.tar.bz2
+      tar xzf protobuf-c.tar.gz
       mv protobuf-c-0.15 protobuf-c-src
   fi
 
