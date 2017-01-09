@@ -135,7 +135,7 @@ if [ "$#" -lt 1 -o "$1" = "client" ]; then
     if [ -f build/libpmlab ]; then
         rm build/libpmlab &> /dev/null || true
     fi
-    gcc $LDFLAGS -lprotobuf-c -o build/pmlabclient build/*.o
+    gcc $LDFLAGS build/*.o -lprotobuf-c -o build/pmlabclient
 fi
 
 if [ "$#" -lt 1 -o "$1" = "daemon" ]; then
